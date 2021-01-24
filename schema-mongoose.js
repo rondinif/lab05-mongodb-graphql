@@ -1,11 +1,21 @@
 var graphql = require ('graphql');  
 var mongoose = require('mongoose');
 
-var TODO = mongoose.model('Todo', {  
-  id: mongoose.Schema.Types.ObjectId,
-  title: String,
-  completed: Boolean
-})
+mongoose.connect('mongodb://localhost/Tododb', {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useFindAndModify: false,
+        useCreateIndex: true
+      });
+
+var schemaObj = new mongoose.Schema(
+    {
+        id: mongoose.Schema.Types.ObjectId,
+        title: String,
+        completed: Boolean                
+    }, { collection: 'Todo'});
+
+var TODO = mongoose.model('todo', schemaObj);
 
 var TodoType = new graphql.GraphQLObjectType({  
     name: 'todo',

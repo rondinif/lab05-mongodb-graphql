@@ -48,3 +48,4 @@ to put together the ideas and knowledge to be able to carry out this lab,
 the following publications available on the internet at the time I carried out my research were useful:
 - https://graphql.org/graphql-js/running-an-express-graphql-server/
 - https://www.compose.com/articles/using-graphql-with-mongodb/
+- https://stackoverflow.com/questions/61388479/how-to-set-db-name-and-collection-name-in-mongoose

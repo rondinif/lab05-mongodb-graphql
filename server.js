@@ -11,7 +11,8 @@ var schema = buildSchema(`
 `);
 */
 
-var schema = require('./schema') 
+// var schema = require('./schema') 
+var schema = require('./schema-mongoose') 
  
 // The root provides a resolver function for each API endpoint
 var root = {
