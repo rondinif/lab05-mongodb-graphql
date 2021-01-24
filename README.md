@@ -20,17 +20,31 @@ It only describes an API the client can make use of.
 ```
 $ npm install
 ```
-### eseguire il server 
+## start the graphql server (`server.js`)
 ``` zsh 
 $ npm start 
 ```
 
-### provare 
+## testing the graphl server (`server.js`)
+### by an http client from the command line (`curl`)
 ``` zsh
 curl -XPOST -H "Content-Type:application/graphql"  \
 -d 'query { todos { title } }' \
-http://localhost:8080
+http://localhost:4000/grapthql
 ```
 
-# riferimento usato per questo lav
-https://www.compose.com/articles/using-graphql-with-mongodb/
+### by a web user interface (graphiql webUI) open 
+`open http://localhost:4000/graphql`
+into the editor panel try:
+``` graphql
+{ todos { id, title } }
+```
+see also the **Documentation Explorer** panel
+
+- check out [the graphiql sources repo](https://github.com/graphql/graphiql) for a deep dive into **graphiql**
+
+# references
+to put together the ideas and knowledge to be able to carry out this lab, 
+the following publications available on the internet at the time I carried out my research were useful:
+- https://graphql.org/graphql-js/running-an-express-graphql-server/
+- https://www.compose.com/articles/using-graphql-with-mongodb/
