@@ -36,16 +36,77 @@ http://localhost:4000/grapthql
 ### by a web user interface (graphiql webUI) open 
 `open http://localhost:4000/graphql`
 into the editor panel try:
+####
 ``` graphql
-{ todos { id, title } }
+{ todos { id, title, completed } }
 ```
+``` json
+{
+  "data": {
+    "todos": [
+      {
+        "_id": "600c6f3c2de876420378ad33",
+        "title": "Buy orange",
+        "completed": true
+      },
+      {
+        "_id": "600c6f3c2de876420378ad34",
+        "title": "Read emails",
+        "completed": false
+      },
+      {
+        "_id": "600d95b1e506988bc4430bb6",
+        "title": "Prova",
+        "completed": true
+      },
+      {
+        "_id": "600d95d2e506988bc4430bb7",
+        "title": "Andare a Novellara",
+        "completed": false
+      }
+    ]
+  }
+}
+```
+
+#### 
+``` 
+{
+  todo(title:"Prova") {
+    _id
+    completed
+  }
+}
+```
+
+``` json 
+{
+  "data": {
+    "todo": {
+      "_id": "600d95b1e506988bc4430bb6",
+      "completed": true
+    }
+  }
+}
+```
+
+
+
 see also the **Documentation Explorer** panel
 
 - check out [the graphiql sources repo](https://github.com/graphql/graphiql) for a deep dive into **graphiql**
 
+
+
+
+
+# WIP
+- https://flaviocopes.com/graphql-node-express/
+
 # references
 to put together the ideas and knowledge to be able to carry out this lab, 
 the following publications available on the internet at the time I carried out my research were useful:
+- https://github.com/graphql/express-graphql/blob/master/README.md
 - https://graphql.org/graphql-js/running-an-express-graphql-server/
 - https://www.compose.com/articles/using-graphql-with-mongodb/
 - https://stackoverflow.com/questions/61388479/how-to-set-db-name-and-collection-name-in-mongoose

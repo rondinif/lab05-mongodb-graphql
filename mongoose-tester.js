@@ -20,7 +20,8 @@ var mongoose = require('mongoose');
     
     var TODO = mongoose.model('todo', schemaObj);
 
-    await TODO.find( (err,res) => {
+//    await TODO.find( (err,res) => {
+    await TODO.findOne({title: {$eq:"Prova"} } ,(err,res) => {
         if (err) {
             console.log(err);
         } else {

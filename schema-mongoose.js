@@ -21,7 +21,7 @@ var TodoType = new graphql.GraphQLObjectType({
     name: 'todo',
     fields: function () {
       return {
-        id: {
+        _id: {
           type: graphql.GraphQLID
         },
         title: {
@@ -55,6 +55,19 @@ var queryType = new graphql.GraphQLObjectType({
   name: 'Query',
   fields: function () {
     return {
+      todo: {
+        type: TodoType,
+        args: {
+          title: { type: graphql.GraphQLString },
+        },
+        resolve: (source, { title }) => {
+          return new Promise((resolve, reject) => {
+            TODO.findOne({title: {$eq: title} } , (err, todo) => {
+              if (err) reject(err)
+              else resolve(todo)
+            })
+          })         },
+      },
       todos: {
         type: new graphql.GraphQLList(TodoType),
         resolve:() => {
@@ -69,6 +82,31 @@ var queryType = new graphql.GraphQLObjectType({
     }
   }
 });
+
+/*
+const queryType = new GraphQLObjectType({
+  name: 'Query',
+  fields: {
+    post: {
+      type: postType,
+      args: {
+        id: { type: GraphQLInt },
+      },
+      resolve: (source, { id }) => {
+        return posts[id]
+      },
+    },
+    posts: {
+      type: new GraphQLList(postType),
+      resolve: () => {
+        return posts
+      },
+    },
+  },
+})
+*/
+
+
 
 module.exports = new graphql.GraphQLSchema({  
     query: queryType
