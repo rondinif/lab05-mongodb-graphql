@@ -38,7 +38,7 @@ http://localhost:4000/grapthql
 into the editor panel try:
 ####
 ``` graphql
-{ todos { id, title, completed } }
+{ todos { _id, title, completed } }
 ```
 ``` json
 {
@@ -72,8 +72,8 @@ into the editor panel try:
 #### 
 ``` 
 {
-  todo(title:"Prova") {
-    _id
+  todo(_id: "600d95d2e506988bc4430bb7") {
+    title
     completed
   }
 }
@@ -83,9 +83,27 @@ into the editor panel try:
 {
   "data": {
     "todo": {
-      "_id": "600d95b1e506988bc4430bb6",
-      "completed": true
+      "title": "Andare a Novellara",
+      "completed": false
     }
+  }
+}
+```
+
+###
+```
+{ todosByTitle(title:"Novellara") { _id, title, completed } }
+```
+```
+{
+  "data": {
+    "todosByTitle": [
+      {
+        "_id": "600d95d2e506988bc4430bb7",
+        "title": "Andare a Novellara",
+        "completed": false
+      }
+    ]
   }
 }
 ```
