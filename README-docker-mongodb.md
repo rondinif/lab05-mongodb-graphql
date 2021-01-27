@@ -1,15 +1,22 @@
  
  
  cd docker
- ## clean
+ ## clean up stopped container or old seed images
+ ```
  docker rm docker_mongo-seed_1
  docker rm docker_mongodb_1
  docker rmi docker_mongo-seed 
+ ```
+
  ## build, seed and run
-
-
+ ```
+ docker-compose up
+ ```
+ 
  ## query 
-``` 
+```
+mongo
+
 > show dbs
 Tododb  0.000GB
 admin   0.000GB

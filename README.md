@@ -21,6 +21,7 @@ It only describes an API the client can make use of.
 $ npm install
 ```
 ## start the graphql server (`server.js`)
+see also `README-docker-mongodb.md` to start and seed the mongodb lab instance
 ``` zsh 
 $ npm start 
 ```
