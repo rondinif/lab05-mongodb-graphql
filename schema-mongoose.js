@@ -101,30 +101,6 @@ var queryType = new graphql.GraphQLObjectType({
   }
 });
 
-/*
-const queryType = new GraphQLObjectType({
-  name: 'Query',
-  fields: {
-    post: {
-      type: postType,
-      args: {
-        id: { type: GraphQLInt },
-      },
-      resolve: (source, { id }) => {
-        return posts[id]
-      },
-    },
-    posts: {
-      type: new GraphQLList(postType),
-      resolve: () => {
-        return posts
-      },
-    },
-  },
-})
-*/
-
-
 
 module.exports = new graphql.GraphQLSchema({
   query: queryType
