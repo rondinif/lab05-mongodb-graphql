@@ -1,7 +1,7 @@
 # LAB05-MONGODB-GRAPHQL
 this repo collects some laboratory experiments that I am doing to learn what possibilities you have to create a graphql server with express using mongodb as a backend.  
 
-### `schema.js`
+### `schema-mongoose.js`
 The schema advertised by the server doesn't define how the data is stored. 
 It only describes an API the client can make use of.
 
@@ -16,9 +16,7 @@ It only describes an API the client can make use of.
 - GraphQL handles adding or changing data as a side-effect of a query. Any operation that intends to have side-effects is called a mutation.
 
 
-### `server.js`
- - server.js 
- - package.js
+# `server.js`
 ```
 $ npm install
 ```
