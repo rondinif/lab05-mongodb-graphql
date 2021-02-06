@@ -98,6 +98,39 @@ var queryType = new graphql.GraphQLObjectType({
         }
       },
 
+      todosByAnyField: {
+        type: new graphql.GraphQLList(TodoType),
+        args: {
+          field: { type: graphql.GraphQLString },
+          like: { type: graphql.GraphQLString },
+        },
+        resolve: (source, { field, like }) => {
+          return new Promise((resolve, reject) => {
+            query = {};
+            switch (field)
+            {
+              case "title":
+              // case "any-other-sring-field":
+                query[field]={$regex: '.*' + like + '.*', $options: 'i'};
+                break;
+              case "completed":
+                query["completed"]={ $eq: like };
+                break;
+              case "_id":
+                query["_id"]={ $eq: like };
+                break
+              default: 
+                reject("hai specificato un campo che non esiste");
+                return;
+            }
+            TODO.find(query, (err, todos) => {
+              if (err) reject(err)
+              else resolve(todos)
+            })
+          })
+        }
+      },
+
       todosQuerable: {
         type: new graphql.GraphQLList(TodoType),
         args: {

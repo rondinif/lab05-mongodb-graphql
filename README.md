@@ -150,6 +150,35 @@ with reference to the answer to [this question](https://stackoverflow.com/q/6592
 }
 ```
 
+### graphql search by any field 
+```
+{ todosByAnyField(field:"title", like:"Novellara") 
+  { 
+	  _id, 
+  	title, 
+  	completed 
+  } 
+}
+```
+``` 
+{ todosByAnyField(field:"_id", like:"601da2c4ba821ac73613b14d") 
+  { 
+	  _id, 
+  	title, 
+  	completed 
+  } 
+}
+```
+```
+{ todosByAnyField(field:"completed", like:"false") 
+  { 
+	  _id, 
+  	title, 
+  	completed 
+  } 
+}
+```
+
 see also the **Documentation Explorer** panel
 
 - check out [the graphiql sources repo](https://github.com/graphql/graphiql) for a deep dive into **graphiql**
