@@ -34,6 +34,23 @@ var TodoType = new graphql.GraphQLObjectType({
   }
 });
 
+var TodoQueryType = new graphql.GraphQLInputObjectType({
+  name: 'TodoQuery',
+  fields: function () {
+    return {
+      _id: {
+        type: graphql.GraphQLID
+      },
+      title: {
+        type: graphql.GraphQLString
+      },
+      completed: {
+        type: graphql.GraphQLBoolean
+      }
+    }
+  }
+});
+
 /* Asynchronous resolver */
 var queryType = new graphql.GraphQLObjectType({
   name: 'Query',
@@ -79,12 +96,12 @@ var queryType = new graphql.GraphQLObjectType({
             })
           })
         }
-      } /*,
+      },
 
       todosQuerable: {
         type: new graphql.GraphQLList(TodoType),
         args: {
-          query: { type: graphql.GraphQLObjectType },
+          query: { type: TodoQueryType },
         },
         resolve: (source, { query }) => {
           return new Promise((resolve, reject) => {
@@ -95,7 +112,7 @@ var queryType = new graphql.GraphQLObjectType({
           })
         }
       }
-      */
+      
 
     }
   }

@@ -37,6 +37,16 @@ switched to db Tododb
 	"acknowledged" : true,
 	"insertedId" : ObjectId("600d95d2e506988bc4430bb7")
 }
+> db.Todo.insertOne({"title" : "Fare la spesa a  Novellara", "completed" : false } )
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("601dddf8ba821ac73613b14f")
+}
+> db.Todo.insertOne({"title" : "Passare all'ufficio postatale di  Novellara", "completed" : false } )
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("601dde23ba821ac73613b150")
+}
 ```
 
 ## references

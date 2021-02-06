@@ -95,7 +95,7 @@ into the editor panel try:
 ```
 { todosByTitle(title:"Novellara") { _id, title, completed } }
 ```
-```
+``` json
 {
   "data": {
     "todosByTitle": [
@@ -103,6 +103,47 @@ into the editor panel try:
         "_id": "600d95d2e506988bc4430bb7",
         "title": "Andare a Novellara",
         "completed": false
+      }
+    ]
+  }
+}
+```
+
+### graphql querable 
+by leveraging on `graphql.GraphQLInputObjectType` we can query on any field, 
+with reference to the answer to [this question](https://stackoverflow.com/q/65925883/1657028)
+ this is generally a GraphQL anti-pattern, as this is building an API based on your database choices, 
+ rather than as a client-driven API.
+```
+{
+  titleSearch: todosQuerable(query:{ title:"Andare a Novellara" }) {
+    _id
+    title
+    completed
+  }
+  idSearch: todosQuerable(query:{ _id:"600c6f3c2de876420378ad33" }) {
+    _id
+    title
+    completed
+  }
+}
+```
+
+``` json
+{
+  "data": {
+    "titleSearch": [
+      {
+        "_id": "600d95d2e506988bc4430bb7",
+        "title": "Andare a Novellara",
+        "completed": false
+      }
+    ],
+    "idSearch": [
+      {
+        "_id": "600c6f3c2de876420378ad33",
+        "title": "Buy orange",
+        "completed": true
       }
     ]
   }
