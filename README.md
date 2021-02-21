@@ -46,23 +46,33 @@ into the editor panel try:
   "data": {
     "todos": [
       {
-        "_id": "600c6f3c2de876420378ad33",
+        "_id": "60329f46df8442ec44d15908",
         "title": "Buy orange",
         "completed": true
       },
       {
-        "_id": "600c6f3c2de876420378ad34",
+        "_id": "60329f46df8442ec44d15909",
         "title": "Read emails",
         "completed": false
       },
       {
-        "_id": "600d95b1e506988bc4430bb6",
-        "title": "Prova",
-        "completed": true
+        "_id": "60329f98c996f4f67c79bf8d",
+        "title": "Andare a Novellara",
+        "completed": false
       },
       {
-        "_id": "600d95d2e506988bc4430bb7",
-        "title": "Andare a Novellara",
+        "_id": "60329fe6f83d56054c7c7dea",
+        "title": "Fare la spesa a  Novellara",
+        "completed": false
+      },
+      {
+        "_id": "60329ff9f83d56054c7c7deb",
+        "title": "Passare all'ufficio postatale di  Novellara",
+        "completed": false
+      },
+      {
+        "_id": "6032a6fff83d56054c7c7dec",
+        "title": "Portare a Novellara alcune cose",
         "completed": false
       }
     ]
@@ -73,7 +83,7 @@ into the editor panel try:
 ### graphql search todo by id 
 ``` 
 {
-  todo(_id: "600d95d2e506988bc4430bb7") {
+  todo(_id: "60329f98c996f4f67c79bf8d") {
     title
     completed
   }
@@ -100,8 +110,23 @@ into the editor panel try:
   "data": {
     "todosByTitle": [
       {
-        "_id": "600d95d2e506988bc4430bb7",
+        "_id": "60329f98c996f4f67c79bf8d",
         "title": "Andare a Novellara",
+        "completed": false
+      },
+      {
+        "_id": "60329fe6f83d56054c7c7dea",
+        "title": "Fare la spesa a  Novellara",
+        "completed": false
+      },
+      {
+        "_id": "60329ff9f83d56054c7c7deb",
+        "title": "Passare all'ufficio postatale di  Novellara",
+        "completed": false
+      },
+      {
+        "_id": "6032a6fff83d56054c7c7dec",
+        "title": "Portare a Novellara alcune cose",
         "completed": false
       }
     ]
@@ -121,7 +146,7 @@ with reference to the answer to [this question](https://stackoverflow.com/q/6592
     title
     completed
   }
-  idSearch: todosQuerable(query:{ _id:"600c6f3c2de876420378ad33" }) {
+  idSearch: todosQuerable(query:{ _id:"60329f46df8442ec44d15908" }) {
     _id
     title
     completed
@@ -134,14 +159,14 @@ with reference to the answer to [this question](https://stackoverflow.com/q/6592
   "data": {
     "titleSearch": [
       {
-        "_id": "600d95d2e506988bc4430bb7",
+        "_id": "60329f98c996f4f67c79bf8d",
         "title": "Andare a Novellara",
         "completed": false
       }
     ],
     "idSearch": [
       {
-        "_id": "600c6f3c2de876420378ad33",
+        "_id": "60329f46df8442ec44d15908",
         "title": "Buy orange",
         "completed": true
       }
@@ -149,6 +174,81 @@ with reference to the answer to [this question](https://stackoverflow.com/q/6592
   }
 }
 ```
+
+### graphql querable by regexp 
+look for those `Todo` where  the last part of `title` is `Novellara`
+```
+{
+  todosExpressable(query:{ title: { value: "Novellara$", isExpression: true }}) {
+    _id
+    title
+    completed
+  }
+}
+```
+``` json
+{
+  "data": {
+    "todosExpressable": [
+      {
+        "_id": "60329f98c996f4f67c79bf8d",
+        "title": "Andare a Novellara",
+        "completed": false
+      },
+      {
+        "_id": "60329fe6f83d56054c7c7dea",
+        "title": "Fare la spesa a  Novellara",
+        "completed": false
+      },
+      {
+        "_id": "60329ff9f83d56054c7c7deb",
+        "title": "Passare all'ufficio postatale di  Novellara",
+        "completed": false
+      }
+    ]
+  }
+}
+```
+
+look for those `Todo` where  the last `title` contains somewhere  `Novellara`
+```
+{
+  todosExpressable(query:{ title: { value: "Novellara", isExpression: true }}) {
+    _id
+    title
+    completed
+  }
+}
+```
+``` json
+{
+  "data": {
+    "todosExpressable": [
+      {
+        "_id": "60329f98c996f4f67c79bf8d",
+        "title": "Andare a Novellara",
+        "completed": false
+      },
+      {
+        "_id": "60329fe6f83d56054c7c7dea",
+        "title": "Fare la spesa a  Novellara",
+        "completed": false
+      },
+      {
+        "_id": "60329ff9f83d56054c7c7deb",
+        "title": "Passare all'ufficio postatale di  Novellara",
+        "completed": false
+      },
+      {
+        "_id": "6032a6fff83d56054c7c7dec",
+        "title": "Portare a Novellara alcune cose",
+        "completed": false
+      }
+    ]
+  }
+}
+```
+
 
 ### graphql search by any field 
 ```
