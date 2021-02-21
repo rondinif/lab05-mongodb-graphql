@@ -51,6 +51,38 @@ var TodoQueryType = new graphql.GraphQLInputObjectType({
   }
 });
 
+/* Support for regexp query */
+var ExpressableStringInput = new graphql.GraphQLInputObjectType({
+  name: 'ExpressableString',
+  fields: {
+    value: {
+      type: graphql.GraphQLString
+    },
+    isExpression:{
+      type: graphql.GraphQLBoolean,
+      defaultValue: false,
+    }
+  }
+})
+
+var TodoExpressableQueryType = new graphql.GraphQLInputObjectType({
+  name: 'TodoExpressableQuery',
+  fields: function () {
+    return {
+      _id: {
+        type: graphql.GraphQLID
+      },
+      title: {
+        type: ExpressableStringInput
+      },
+      completed: {
+        type: graphql.GraphQLBoolean
+      }
+    }
+  }
+});
+
+
 /* Asynchronous resolver */
 var queryType = new graphql.GraphQLObjectType({
   name: 'Query',
@@ -144,9 +176,31 @@ var queryType = new graphql.GraphQLObjectType({
             })
           })
         }
+      },
+
+      todosExpressable: {
+        type: new graphql.GraphQLList(TodoType),
+        args: {
+          query: { type: TodoExpressableQueryType },
+        },
+        resolve: async (source, { query }) => {
+          const dbQuery = {};
+
+          if (query.title.isExpression) {
+            dbQuery.title = new RegExp(query.title.value);
+          } else {
+            dbQuery.title = query.title.value;
+          }
+
+          return new Promise((resolve, reject) => {
+            TODO.find(dbQuery, (err, todos) => {
+              if (err) reject(err)
+              else resolve(todos)
+            })
+          })
+        }
       }
       
-
     }
   }
 });

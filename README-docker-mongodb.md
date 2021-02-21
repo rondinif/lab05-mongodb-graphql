@@ -35,17 +35,22 @@ switched to db Tododb
 > db.Todo.insertOne({"title" : "Andare a Novellara", "completed" : false } )
 {
 	"acknowledged" : true,
-	"insertedId" : ObjectId("600d95d2e506988bc4430bb7")
+	"insertedId" : ObjectId("60329f98c996f4f67c79bf8d")
 }
 > db.Todo.insertOne({"title" : "Fare la spesa a  Novellara", "completed" : false } )
 {
-        "acknowledged" : true,
-        "insertedId" : ObjectId("601dddf8ba821ac73613b14f")
+	"acknowledged" : true,
+	"insertedId" : ObjectId("60329fe6f83d56054c7c7dea")
 }
 > db.Todo.insertOne({"title" : "Passare all'ufficio postatale di  Novellara", "completed" : false } )
 {
-        "acknowledged" : true,
-        "insertedId" : ObjectId("601dde23ba821ac73613b150")
+	"acknowledged" : true,
+	"insertedId" : ObjectId("60329ff9f83d56054c7c7deb")
+}
+> db.Todo.insertOne({"title" : "Portare a Novellara alcune cose", "completed" : false } )
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("6032a6fff83d56054c7c7dec")
 }
 ```
 
